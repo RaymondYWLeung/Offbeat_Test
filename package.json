@@ -1,7 +1,7 @@
 {
   "name": "offbeat_test",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "app.ts",
   "scripts": {
     "start": "nodemon src/app.ts",
     "build": "tsc app.ts",
