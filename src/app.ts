@@ -7,8 +7,8 @@ const app = express();
 const port = 3000;
 
 
-app.use('/productionCategory',categoryRouter);
-app.use('/production',promotionRouter);
+app.use('/promotionCategory',categoryRouter);
+app.use('/promotion',promotionRouter);
 
 
 app.listen(port, () => {

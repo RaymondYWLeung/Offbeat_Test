@@ -24,6 +24,34 @@ categoryRouter.get("/", async (_req: Request, res: Response) => {
 
 })
 
+// GET
+categoryRouter.get("/tree", async (_req: Request, res: Response) => {
+
+    await PromotionCategory.aggregate([
+    {
+        "$lookup": {
+        "from": "Promotion",
+            "localField": "id",
+            "foreignField": "promotionCategoryId",
+            "as": "children",
+            "pipeline":[
+                {"$project":{"name":1,"id":1,"_id":0}}
+            ]
+        },
+    }, {"$project":{"name":1,"id":1,"subCategoryCount":1,"children":1,"_id":0}}
+    ],function (error: any, result: any){
+        if(error){
+            console.log(error);
+            res.status(400);
+            res.send(error);
+        }else {
+            res.status(200);
+            res.send(result);
+        }
+    })
+
+})
+
 // POST
 categoryRouter.post("/", async (req: Request, res: Response) => {
 
